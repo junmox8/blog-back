@@ -1,0 +1,34 @@
+{
+  "name": "blog-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junmox8/blog-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junmox8/blog-back/issues"
+  },
+  "homepage": "https://github.com/junmox8/blog-back#readme",
+  "dependencies": {
+    "dayjs": "^1.11.5",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "express-jwt": "^7.7.5",
+    "file-stream-rotator": "^0.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.19",
+    "qcloud-cos-sts": "^3.1.0",
+    "qs": "^6.11.0",
+    "sequelize": "^6.21.6"
+  }
+}
