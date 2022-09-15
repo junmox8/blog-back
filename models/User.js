@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../sequelize/index");
-
-const Admin = sequelize.define(
-  "Admin",
+const sequelize = require("../sequelize/mysql_sequelize");
+const User = sequelize.define(
+  "User",
   {
     username: {
       type: DataTypes.STRING(64),
@@ -22,4 +21,4 @@ const Admin = sequelize.define(
   }
 );
 
-module.exports = Admin;
+module.exports = User;

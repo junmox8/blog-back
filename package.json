@@ -29,6 +29,7 @@
     "nodemon": "^2.0.19",
     "qcloud-cos-sts": "^3.1.0",
     "qs": "^6.11.0",
-    "sequelize": "^6.21.6"
+    "sequelize": "^6.21.6",
+    "superagent": "^8.0.0"
   }
 }
