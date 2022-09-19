@@ -3,6 +3,10 @@ const sequelize = require("../sequelize/mysql_sequelize");
 const Article = sequelize.define(
   "Article",
   {
+    img: {
+      type: DataTypes.STRING(128),
+      allowNull: false,
+    },
     title: {
       type: DataTypes.STRING(32),
       allowNull: false,
@@ -27,7 +31,7 @@ const Article = sequelize.define(
       defaultValue: 0,
     },
     content: {
-      type: DataTypes.STRING(2048),
+      type: DataTypes.STRING(10000),
       allowNull: false,
     },
     tags: {

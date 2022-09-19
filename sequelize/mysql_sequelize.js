@@ -18,12 +18,5 @@ sequelize
   .catch((error) => {
     console.error("Unable to connect to the database:", error);
   });
-// sequelize
-//   .sync()
-//   .then(() => {
-//     console.log("init db ok");
-//   })
-//   .catch((err) => {
-//     console.log("init db error", err);
-//   });
+
 module.exports = sequelize;

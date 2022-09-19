@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../sequelize/mysql_sequelize");
-const Tag = sequelize.define(
-  "Tag",
+const Categorie = sequelize.define(
+  "Categorie",
   {
     name: {
       type: DataTypes.STRING(64),
@@ -16,4 +16,4 @@ const Tag = sequelize.define(
   }
 );
 
-module.exports = Tag;
+module.exports = Categorie;
