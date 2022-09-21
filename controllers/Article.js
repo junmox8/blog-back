@@ -15,7 +15,7 @@ const handUpArticle = async (req, res) => {
   if (result) {
     result.setCategories(categories.split(","));
     returnSuccess(res, "");
-  }
+  } else returnFail(res, "上传失败");
 };
 const getAllArticleNumber = async (req, res) => {
   const result = await Article.findAll({});
@@ -29,8 +29,26 @@ const getArticleList = async (req, res) => {
   });
   if (result) returnSuccess(res, result);
 };
+const getRecentArticle = async (req, res) => {
+  const result = await Article.findAll({
+    limit: 4,
+    order: [["createdAt", "DESC"]],
+  });
+  if (result) returnSuccess(res, result);
+};
+const getArticleById = async (req, res) => {
+  const result = await Article.findOne({
+    where: {
+      id: req.query.id,
+    },
+    include: [Categorie, User],
+  });
+  if (result) returnSuccess(res, result);
+};
 module.exports = {
   handUpArticle,
   getAllArticleNumber,
   getArticleList,
+  getRecentArticle,
+  getArticleById,
 };

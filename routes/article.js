@@ -10,4 +10,10 @@ router.get("/getAllArticleNumber", (req, res) => {
 router.get("/getArticleList", (req, res) => {
   Article.getArticleList(req, res);
 });
+router.get("/getRecentArticle", (req, res) => {
+  Article.getRecentArticle(req, res);
+});
+router.get("/getArticleById", (req, res) => {
+  Article.getArticleById(req, res);
+});
 module.exports = router;

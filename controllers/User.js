@@ -32,7 +32,7 @@ const register = async (req, res) => {
       password: req.body.password,
     });
     if (result) returnSuccess(res, result);
-    else returnFail(res, "");
+    else returnFail(res, "登陆失败");
   }
 };
 module.exports = {
