@@ -15,11 +15,29 @@ User.hasMany(Article, {
 Article.belongsTo(User, {
   foreignKey: "userId",
 });
+Article.hasMany(ArticleComment, {
+  foreignKey: "articleId",
+});
+ArticleComment.belongsTo(Article, {
+  foreignKey: "articleId",
+});
 User.hasMany(ArticleComment, {
   foreignKey: "userId",
 });
 ArticleComment.belongsTo(User, {
   foreignKey: "userId",
+});
+User.hasMany(ArticleCommentAttach, {
+  foreignKey: "fromUserId",
+});
+ArticleCommentAttach.belongsTo(User, {
+  foreignKey: "fromUserId",
+});
+User.hasMany(ArticleCommentAttach, {
+  foreignKey: "toUserId",
+});
+ArticleCommentAttach.belongsTo(User, {
+  foreignKey: "toUserId",
 });
 ArticleComment.hasMany(ArticleCommentAttach, {
   foreignKey: "commentId",
