@@ -13,7 +13,6 @@ const handUpComment = async (req, res) => {
     content: req.body.content,
     userId: req.auth.id,
     articleId: req.body.articleId,
-    createdAt: moment(new Date()).utcOffset(-8).format("YYYY-MM-DD HH:mm:ss"),
   });
   if (result) returnSuccess(res, result);
   else returnFail(res, "发布评论失败");
