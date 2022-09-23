@@ -35,7 +35,17 @@ const register = async (req, res) => {
     else returnFail(res, "登陆失败");
   }
 };
+const getUserInfo = async (req, res) => {
+  const result = await User.findOne({
+    where: {
+      id: req.query.id,
+    },
+    attributes: ["name", "avatar"],
+  });
+  if (result) returnSuccess(res, result);
+};
 module.exports = {
   login,
   register,
+  getUserInfo,
 };

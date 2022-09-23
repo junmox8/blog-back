@@ -11,6 +11,9 @@ const handUpArticle = async (req, res) => {
     tags,
     userId: req.auth.id,
     img,
+    createdAt: moment(new Date())
+      .utcOffset(+16)
+      .format("YYYY-MM-DD HH:mm:ss"),
   });
   if (result) {
     result.setCategories(categories.split(","));
