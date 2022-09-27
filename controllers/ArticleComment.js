@@ -23,6 +23,8 @@ const getAllContent = async (req, res) => {
       articleId: req.query.id,
     },
     include: [User],
+    limit: 5,
+    offset: (req.query.page - 1) * 5,
   });
   if (result) returnSuccess(res, result);
 };
@@ -58,10 +60,19 @@ const handUpCommentAttachAttach = async (req, res) => {
   if (result) returnSuccess(res, result);
   else returnFail(res, "添加评论失败");
 };
+const getCommentNumber = async (req, res) => {
+  const result = await ArticleComment.findAll({
+    where: {
+      articleId: req.query.id,
+    },
+  });
+  if (result) returnSuccess(res, result.length);
+};
 module.exports = {
   handUpComment,
   getAllContent,
   handUpCommentAttach,
   getTheCommentAttach,
   handUpCommentAttachAttach,
+  getCommentNumber,
 };

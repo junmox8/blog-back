@@ -44,8 +44,36 @@ const getUserInfo = async (req, res) => {
   });
   if (result) returnSuccess(res, result);
 };
+const getMyUserInfo = async (req, res) => {
+  const result = await User.findOne({
+    where: {
+      id: req.auth.id,
+    },
+    attributes: ["name", "avatar", "introduction"],
+  });
+  if (result) returnSuccess(res, result);
+};
+const updateUserInfo = async (req, res) => {
+  const { name, avatar, introduction } = req.body;
+  const result = await User.update(
+    {
+      name,
+      avatar,
+      introduction,
+    },
+    {
+      where: {
+        id: req.auth.id,
+      },
+    }
+  );
+  if (result) returnSuccess(res, result);
+  else returnFail(res, "更新失败");
+};
 module.exports = {
   login,
   register,
   getUserInfo,
+  getMyUserInfo,
+  updateUserInfo,
 };

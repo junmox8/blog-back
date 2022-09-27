@@ -16,4 +16,7 @@ router.get("/getTheCommentAttach", (req, res) => {
 router.post("/handUpCommentAttachAttach", (req, res) => {
   ArticleComment.handUpCommentAttachAttach(req, res);
 });
+router.get("/getCommentNumber", (req, res) => {
+  ArticleComment.getCommentNumber(req, res);
+});
 module.exports = router;

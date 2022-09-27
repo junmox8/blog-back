@@ -10,4 +10,10 @@ router.post("/register", (req, res) => {
 router.get("/getUserInfo", (req, res) => {
   User.getUserInfo(req, res);
 });
+router.get("/getMyUserInfo", (req, res) => {
+  User.getMyUserInfo(req, res);
+});
+router.post("/updateUserInfo", (req, res) => {
+  User.updateUserInfo(req, res);
+});
 module.exports = router;

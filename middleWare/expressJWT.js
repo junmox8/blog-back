@@ -6,7 +6,7 @@ const jwtAuth = jwt({
   algorithms: ["HS256"],
   requestProperty: "auth",
 }).unless({
-  path: ["/api/user/login", "/api/init/initData"],
+  path: ["/api/user/login", "/api/init/initData", "/api/user/register"],
 });
 
 module.exports = jwtAuth;
