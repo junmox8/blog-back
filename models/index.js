@@ -3,6 +3,8 @@ const Article = require("./Article");
 const Categorie = require("./Categorie");
 const ArticleComment = require("./ArticleComment");
 const ArticleCommentAttach = require("./ArticleCommentAttach");
+const ImgKind = require("./ImgKind");
+const Img = require("./Img");
 Article.belongsToMany(Categorie, {
   through: "Article_Tag",
 });
@@ -45,10 +47,24 @@ ArticleComment.hasMany(ArticleCommentAttach, {
 ArticleCommentAttach.belongsTo(ArticleComment, {
   foreignKey: "commentId",
 });
+User.hasMany(ImgKind, {
+  foreignKey: "userId",
+});
+ImgKind.belongsTo(User, {
+  foreignKey: "userId",
+});
+ImgKind.hasMany(Img, {
+  foreignKey: "kindId",
+});
+Img.belongsTo(ImgKind, {
+  foreignKey: "kindId",
+});
 module.exports = {
   User,
   Article,
   Categorie,
   ArticleComment,
   ArticleCommentAttach,
+  ImgKind,
+  Img,
 };
