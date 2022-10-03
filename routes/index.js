@@ -6,4 +6,5 @@ router.use("/upload", require("./cos"));
 router.use("/init", require("./dev"));
 router.use("/articleComment", require("./articleComment"));
 router.use("/album", require("./album"));
+router.use("/message", require("./message"));
 module.exports = router;

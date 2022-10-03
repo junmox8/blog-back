@@ -39,12 +39,32 @@ const handUpImg = async (req, res) => {
     },
   });
   let kindId = result.id;
-  const result2 = await Img.create({
-    url: urls,
-    kindId,
+  const result2 = await Img.findOne({
+    where: {
+      kindId,
+    },
   });
-  if (result) returnSuccess(res, result);
-  else returnFail(res, "上传图片失败");
+  if (result2) {
+    const result3 = await Img.update(
+      {
+        url: urls,
+      },
+      {
+        where: {
+          kindId,
+        },
+      }
+    );
+    if (result3) returnSuccess(res, result3);
+    else returnFail(res, "上传图片失败");
+  } else {
+    const result3 = await Img.create({
+      url: urls,
+      kindId,
+    });
+    if (result3) returnSuccess(res, result3);
+    else returnFail(res, "上传图片失败");
+  }
 };
 const getImgs = async (req, res) => {
   const { id } = req.auth;
