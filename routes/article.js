@@ -16,4 +16,7 @@ router.get("/getRecentArticle", (req, res) => {
 router.get("/getArticleById", (req, res) => {
   Article.getArticleById(req, res);
 });
+router.post("/addPageViews", (req, res) => {
+  Article.addPageViews(req, res);
+});
 module.exports = router;

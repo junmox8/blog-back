@@ -22,10 +22,11 @@ const getAllArticleNumber = async (req, res) => {
   if (result) returnSuccess(res, result.length);
 };
 const getArticleList = async (req, res) => {
+  const { limit } = req.query;
   const result = await Article.findAll({
     include: [User, Categorie],
-    limit: 3,
-    offset: (req.query.page - 1) * 3,
+    limit: Number(limit),
+    offset: (req.query.page - 1) * Number(limit),
   });
   if (result) returnSuccess(res, result);
 };
@@ -45,10 +46,31 @@ const getArticleById = async (req, res) => {
   });
   if (result) returnSuccess(res, result);
 };
+const addPageViews = async (req, res) => {
+  const { articleId } = req.body;
+  const { look } = await Article.findOne({
+    where: {
+      id: articleId,
+    },
+  });
+  const result = await Article.update(
+    {
+      look: look + 1,
+    },
+    {
+      where: {
+        id: articleId,
+      },
+    }
+  );
+  if (result) returnSuccess(res, "");
+  else returnFail(res, "增加浏览量失败");
+};
 module.exports = {
   handUpArticle,
   getAllArticleNumber,
   getArticleList,
   getRecentArticle,
   getArticleById,
+  addPageViews,
 };

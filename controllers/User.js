@@ -30,7 +30,21 @@ const register = async (req, res) => {
     const result = await User.create({
       username: req.body.username,
       password: req.body.password,
+      avatar:
+        "http://huangjunyi-1310688513.cos.ap-shanghai.myqcloud.com/articleCover/1666310822726",
+      name: "未命名",
+      introduction: "",
     });
+    await User.update(
+      {
+        name: "未命名" + result.id,
+      },
+      {
+        where: {
+          id: result.id,
+        },
+      }
+    );
     if (result) returnSuccess(res, result);
     else returnFail(res, "登陆失败");
   }

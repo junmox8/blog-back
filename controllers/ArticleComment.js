@@ -14,6 +14,24 @@ const handUpComment = async (req, res) => {
     userId: req.auth.id,
     articleId: req.body.articleId,
   });
+  const commen = await Article.findOne({
+    where: {
+      id: req.body.articleId,
+    },
+    attributes: ["comment"],
+  });
+  const comment = commen.dataValues.comment;
+  await Article.update(
+    {
+      comment: comment + 1,
+    },
+    {
+      where: {
+        id: req.body.articleId,
+      },
+    }
+  );
+
   if (result) returnSuccess(res, result);
   else returnFail(res, "发布评论失败");
 };
