@@ -19,4 +19,13 @@ router.get("/getArticleById", (req, res) => {
 router.post("/addPageViews", (req, res) => {
   Article.addPageViews(req, res);
 });
+router.post("/likeOrNot", (req, res) => {
+  Article.likeOrNot(req, res);
+});
+router.get("/hasLike", (req, res) => {
+  Article.hasLike(req, res);
+});
+router.get("/searchArticle", (req, res) => {
+  Article.searchArticle(req, res);
+});
 module.exports = router;

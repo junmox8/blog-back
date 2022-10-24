@@ -9,7 +9,7 @@ module.exports = {
       password: "a",
       avatar:
         "http://pic.soutu123.cn/element_origin_min_pic/01/54/05/625746fd5b60878.jpg!/fw/700/quality/90/unsharp/true/compress/true",
-      name: "未命名",
+      name: "未命名1",
       introduction: "简介",
     });
     await Categorie.bulkCreate([
