@@ -28,4 +28,7 @@ router.get("/hasLike", (req, res) => {
 router.get("/searchArticle", (req, res) => {
   Article.searchArticle(req, res);
 });
+router.get("/searchArticleByTag", (req, res) => {
+  Article.searchArticleByTag(req, res);
+});
 module.exports = router;

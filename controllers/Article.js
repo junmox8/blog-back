@@ -142,9 +142,36 @@ const searchArticle = async (req, res) => {
       },
     },
     offset: (page - 1) * 12,
+    limit: 12,
     include: [User, Categorie],
   });
   returnSuccess(res, result);
+};
+const searchArticleByTag = async (req, res) => {
+  const { tags, word, page } = req.query;
+  const result = await Article.findAll({
+    where: {
+      title: {
+        [Op.like]: "%" + word + "%",
+      },
+    },
+    offset: (Number(page) - 1) * 12,
+    limit: 12,
+    include: [User, Categorie],
+  });
+  if (result) {
+    let resultArr = [];
+    result.forEach((item) => {
+      if (JSON.parse(tags).length != 0) {
+        let arr = [];
+        item.Categories.forEach((item) => {
+          arr.push(item.id);
+        });
+        if (String(arr) == String(JSON.parse(tags))) resultArr.push(item);
+      } else resultArr.push(item);
+    });
+    returnSuccess(res, resultArr);
+  }
 };
 module.exports = {
   handUpArticle,
@@ -156,4 +183,5 @@ module.exports = {
   likeOrNot,
   hasLike,
   searchArticle,
+  searchArticleByTag,
 };
