@@ -71,8 +71,10 @@ const likeOrNot = async (req, res) => {
   const { articleId } = req.body;
   const user = await User.findOne({ where: { id } });
   const log = await LikeLog.findOne({
-    articleId,
-    userId: id,
+    where: {
+      articleId,
+      userId: id,
+    },
   });
   const lik = await Article.findOne({
     where: {
