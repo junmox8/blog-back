@@ -38,6 +38,10 @@ const Article = sequelize.define(
       type: DataTypes.STRING(64),
       allowNull: true,
     },
+    categories: {
+      type: DataTypes.STRING(64),
+      allowNull: true,
+    },
   },
   {
     underscored: true,

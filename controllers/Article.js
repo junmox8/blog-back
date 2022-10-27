@@ -11,9 +11,11 @@ const handUpArticle = async (req, res) => {
     tags,
     userId: req.auth.id,
     img,
+    categories,
   });
   if (result) {
-    result.setCategories(categories.split(","));
+    let arr = categories.split(",").sort();
+    result.setCategories(arr);
     returnSuccess(res, "");
   } else returnFail(res, "上传失败");
 };
@@ -150,34 +152,53 @@ const searchArticle = async (req, res) => {
   returnSuccess(res, result);
 };
 const searchArticleByTag = async (req, res) => {
-  const { tags, word, page } = req.query;
-  const result = await Article.findAll({
-    where: {
-      title: {
-        [Op.like]: "%" + word + "%",
+  let { tags, word, page } = req.query;
+  tags = String(JSON.parse(tags).sort()).replace("[", "").replace("]", "");
+  if (tags.length > 0) {
+    const result = await Article.findAll({
+      where: {
+        title: {
+          [Op.like]: "%" + word + "%",
+        },
+        categories: {
+          [Op.like]: "%" + tags + "%",
+        },
       },
-    },
-    offset: (Number(page) - 1) * 12,
-    limit: 12,
-    include: [User, Categorie],
-  });
-  if (result) {
-    let resultArr = [];
-    result.forEach((item) => {
-      if (JSON.parse(tags).length != 0) {
-        let arr = [];
-        item.Categories.forEach((item) => {
-          arr.push(item.id);
-        });
-        if (
-          arr.length > 0 &&
-          arr.every((item) => JSON.parse(tags).includes(item))
-        )
-          resultArr.push(item);
-      } else resultArr.push(item);
+      offset: (Number(page) - 1) * 12,
+      limit: 12,
+      include: [User, Categorie],
     });
-    returnSuccess(res, resultArr);
+    if (result) returnSuccess(res, result);
+  } else {
+    const result = await Article.findAll({
+      where: {
+        title: {
+          [Op.like]: "%" + word + "%",
+        },
+      },
+      offset: (page - 1) * 12,
+      limit: 12,
+      include: [User, Categorie],
+    });
+    returnSuccess(res, result);
   }
+  // if (result) {
+  //   let resultArr = [];
+  //   result.forEach((item) => {
+  //     if (JSON.parse(tags).length != 0) {
+  //       let arr = [];
+  //       item.Categories.forEach((item) => {
+  //         arr.push(item.id);
+  //       });
+  //       if (
+  //         arr.length > 0 &&
+  //         arr.every((item) => JSON.parse(tags).includes(item))
+  //       )
+  //         resultArr.push(item);
+  //     } else resultArr.push(item);
+  //   });
+  //   returnSuccess(res, resultArr);
+  // }
 };
 module.exports = {
   handUpArticle,
