@@ -182,23 +182,6 @@ const searchArticleByTag = async (req, res) => {
     });
     returnSuccess(res, result);
   }
-  // if (result) {
-  //   let resultArr = [];
-  //   result.forEach((item) => {
-  //     if (JSON.parse(tags).length != 0) {
-  //       let arr = [];
-  //       item.Categories.forEach((item) => {
-  //         arr.push(item.id);
-  //       });
-  //       if (
-  //         arr.length > 0 &&
-  //         arr.every((item) => JSON.parse(tags).includes(item))
-  //       )
-  //         resultArr.push(item);
-  //     } else resultArr.push(item);
-  //   });
-  //   returnSuccess(res, resultArr);
-  // }
 };
 module.exports = {
   handUpArticle,
