@@ -169,7 +169,11 @@ const searchArticleByTag = async (req, res) => {
         item.Categories.forEach((item) => {
           arr.push(item.id);
         });
-        if (String(arr) == String(JSON.parse(tags))) resultArr.push(item);
+        if (
+          arr.length > 0 &&
+          arr.every((item) => JSON.parse(tags).includes(item))
+        )
+          resultArr.push(item);
       } else resultArr.push(item);
     });
     returnSuccess(res, resultArr);

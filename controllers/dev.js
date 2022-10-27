@@ -223,6 +223,15 @@ module.exports = {
       {
         name: "taro",
       },
+      {
+        name: "nextjs",
+      },
+      {
+        name: "nestjs",
+      },
+      {
+        name: "nuxtjs",
+      },
     ]);
   },
 };
