@@ -153,22 +153,26 @@ const searchArticle = async (req, res) => {
 };
 const searchArticleByTag = async (req, res) => {
   let { tags, word, page } = req.query;
-  tags = String(JSON.parse(tags).sort()).replace("[", "").replace("]", "");
+  tags = JSON.parse(tags).sort();
   if (tags.length > 0) {
     const result = await Article.findAll({
       where: {
         title: {
           [Op.like]: "%" + word + "%",
         },
-        categories: {
-          [Op.like]: "%" + tags + "%",
-        },
       },
-      offset: (Number(page) - 1) * 12,
-      limit: 12,
       include: [User, Categorie],
     });
-    if (result) returnSuccess(res, result);
+    let arr = [];
+    result.forEach((item) => {
+      let n = 0;
+      tags.forEach((i) => {
+        if (item.categories.includes(String(i))) {
+        } else n++;
+      });
+      if (n == 0) arr.push(item);
+    });
+    returnSuccess(res, arr);
   } else {
     const result = await Article.findAll({
       where: {
