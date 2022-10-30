@@ -10,6 +10,7 @@ const handUpImgKind = async (req, res) => {
     const r = await ImgKind.findOne({
       where: {
         name,
+        userId: id,
       },
     });
     if (r) returnFail(res, "此分类已存在");

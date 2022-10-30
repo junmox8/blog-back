@@ -29,6 +29,7 @@ const getArticleList = async (req, res) => {
     include: [User, Categorie],
     limit: Number(limit),
     offset: (req.query.page - 1) * Number(limit),
+    order: [["like", "DESC"]],
   });
   if (result) returnSuccess(res, result);
 };
@@ -145,6 +146,7 @@ const searchArticle = async (req, res) => {
         [Op.like]: "%" + word + "%",
       },
     },
+    order: [["like", "DESC"]],
     offset: (page - 1) * 12,
     limit: 12,
     include: [User, Categorie],
@@ -161,6 +163,7 @@ const searchArticleByTag = async (req, res) => {
           [Op.like]: "%" + word + "%",
         },
       },
+      order: [["like", "DESC"]],
       include: [User, Categorie],
     });
     let arr = [];
@@ -180,6 +183,7 @@ const searchArticleByTag = async (req, res) => {
           [Op.like]: "%" + word + "%",
         },
       },
+      order: [["like", "DESC"]],
       offset: (page - 1) * 12,
       limit: 12,
       include: [User, Categorie],
