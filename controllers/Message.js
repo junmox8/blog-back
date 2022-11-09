@@ -60,6 +60,26 @@ const handUpMessageAttachAttach = async (req, res) => {
   if (result) returnSuccess(res, result);
   else returnFail(res, "添加评论失败");
 };
+const deleteMessage = async (req, res) => {
+  const { id } = req.body;
+  const result = await Message.destroy({
+    where: {
+      id,
+    },
+  });
+  if (result) returnSuccess(res, "");
+  else returnFail(res, "删除留言失败");
+};
+const deleteMessageAttach = async (req, res) => {
+  const { id } = req.body;
+  const result = await MessageAttach.destroy({
+    where: {
+      id,
+    },
+  });
+  if (result) returnSuccess(res, "");
+  else returnFail(res, "删除留言失败");
+};
 module.exports = {
   handUpMessage,
   getAllMessageNumber,
@@ -67,4 +87,6 @@ module.exports = {
   handUpMessageAttach,
   getTheMessageAttach,
   handUpMessageAttachAttach,
+  deleteMessage,
+  deleteMessageAttach,
 };

@@ -19,4 +19,10 @@ router.post("/handUpCommentAttachAttach", (req, res) => {
 router.get("/getCommentNumber", (req, res) => {
   ArticleComment.getCommentNumber(req, res);
 });
+router.post("/deleteComment", (req, res) => {
+  ArticleComment.deleteComment(req, res);
+});
+router.post("/deleteCommentAttach", (req, res) => {
+  ArticleComment.deleteCommentAttach(req, res);
+});
 module.exports = router;

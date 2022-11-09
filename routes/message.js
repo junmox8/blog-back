@@ -19,4 +19,10 @@ router.get("/getTheMessageAttach", (req, res) => {
 router.post("/handUpMessageAttachAttach", (req, res) => {
   Message.handUpMessageAttachAttach(req, res);
 });
+router.post("/deleteMessage", (req, res) => {
+  Message.deleteMessage(req, res);
+});
+router.post("/deleteMessageAttach", (req, res) => {
+  Message.deleteMessageAttach(req, res);
+});
 module.exports = router;

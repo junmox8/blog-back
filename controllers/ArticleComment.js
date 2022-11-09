@@ -86,6 +86,26 @@ const getCommentNumber = async (req, res) => {
   });
   if (result) returnSuccess(res, result.length);
 };
+const deleteComment = async (req, res) => {
+  const { id } = req.body;
+  const result = await ArticleComment.destroy({
+    where: {
+      id,
+    },
+  });
+  if (result) returnSuccess(res, "");
+  else returnFail(res, "删除评论失败");
+};
+const deleteCommentAttach = async (req, res) => {
+  const { id } = req.body;
+  const result = await ArticleCommentAttach.destroy({
+    where: {
+      id,
+    },
+  });
+  if (result) returnSuccess(res, "");
+  else returnFail(res, "删除评论失败");
+};
 module.exports = {
   handUpComment,
   getAllContent,
@@ -93,4 +113,6 @@ module.exports = {
   getTheCommentAttach,
   handUpCommentAttachAttach,
   getCommentNumber,
+  deleteComment,
+  deleteCommentAttach,
 };
